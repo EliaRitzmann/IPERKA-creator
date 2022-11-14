@@ -12,7 +12,7 @@ export const SettingsWidget = ({document}) => {
         <h2 className="card-title">Projekt:</h2>
         <TextInput document={document} name="documentName" label1="Name:" value={document.documentName} placeholder="Name"></TextInput>
         <TextAreaInput document={document} name="documentDescription" label1="Beschreibung:" value={document.documentDescription} placeholder="Beschreibung"></TextAreaInput>
-        <DateInput document={document} name="dueDate" label1="Abgabedatum:" value={document.dueDate} placeholder="dd/mm/jjjj"></DateInput>
+        <DateInput document={document} name="dueDate" label1="Abgabedatum:" label2="(Immer bis 23:59 Uhr)" value={document.dueDate} placeholder="dd/mm/jjjj"></DateInput>
         <DeleteProjectButton document={document}></DeleteProjectButton>
       </div>
     </div>

@@ -20,7 +20,7 @@ export const TextAreaInput = (props) => {
   }, [])
 
   return (
-    <div className="form-control w-full">
+    <div className="form-control w-full -mt-2">
       <label className="label">
         <span className="label-text">{props.label1}</span>
         <span className="label-text-alt">{props.label2}</span>
