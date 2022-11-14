@@ -24,10 +24,10 @@ export const Editor = () => {
   //check if document exists and if editor can load stuff
   if(document){
     return (
-      <div className="h-screen flex ">
+      <div className="h-screen flex">
         <Sidebar setCurrentPage={setCurrentPage}></Sidebar>
   
-        <div className="bg-gray-200 w-full rounded-l-3xl ml-20">
+        <div className="bg-gray-200 w-full rounded-l-3xl ml-20 overflow-auto">
           {currentPage === "Dashboard" && <Dashboard document={document}></Dashboard>}
           {currentPage === "Informieren" && <Informieren document={document}></Informieren>}
           {currentPage === "Planen" && <Planen document={document}></Planen>}

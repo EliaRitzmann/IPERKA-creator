@@ -39,7 +39,7 @@ export const Dashboard = ({document}) => {
       <div className="grid grid-cols-2 md:grid-cols-3 md:grid-rows-4 gap-4">
         <WelcomeWidget></WelcomeWidget>
         <IPERKA_Widget></IPERKA_Widget>
-        <DaysLeftWidget></DaysLeftWidget>
+        <DaysLeftWidget document={document}></DaysLeftWidget>
         <TeamsWidget></TeamsWidget>
         <SettingsWidget document={document}></SettingsWidget>
         <NotesWidget document={document}></NotesWidget>
