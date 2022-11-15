@@ -40,7 +40,7 @@ export const Editor = () => {
         </div>
       </div>
     );
-  }else if(contributor){
+  }else if(documentb){
     return (
       <div className="h-screen flex">
         <Sidebar setCurrentPage={setCurrentPage}></Sidebar>
