@@ -46,13 +46,13 @@ export const Editor = () => {
         <Sidebar setCurrentPage={setCurrentPage}></Sidebar>
   
         <div className="bg-gray-200 w-full rounded-l-3xl ml-20 overflow-auto">
-          {currentPage === "Dashboard" && <Dashboard document={document}></Dashboard>}
-          {currentPage === "Informieren" && <Informieren document={document}></Informieren>}
-          {currentPage === "Planen" && <Planen document={document}></Planen>}
-          {currentPage === "Entscheiden" && <Entscheiden document={document}></Entscheiden>}
-          {currentPage === "Realisieren" && <Realisieren document={document}></Realisieren>}
-          {currentPage === "Kontrollieren" && <Kontrollieren document={document}></Kontrollieren>}
-          {currentPage ==="Auswerten" && <Auswerten document={document}></Auswerten>}
+          {currentPage === "Dashboard" && <Dashboard document={documentb}></Dashboard>}
+          {currentPage === "Informieren" && <Informieren document={documentb}></Informieren>}
+          {currentPage === "Planen" && <Planen document={documentb}></Planen>}
+          {currentPage === "Entscheiden" && <Entscheiden document={documentb}></Entscheiden>}
+          {currentPage === "Realisieren" && <Realisieren document={documentb}></Realisieren>}
+          {currentPage === "Kontrollieren" && <Kontrollieren document={documentb}></Kontrollieren>}
+          {currentPage ==="Auswerten" && <Auswerten document={documentb}></Auswerten>}
         </div>
       </div>
     );
