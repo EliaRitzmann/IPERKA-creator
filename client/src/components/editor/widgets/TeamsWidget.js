@@ -71,7 +71,7 @@ export const TeamsWidget = ({ document }) => {
             </div>
             
           </div>
-          <div className="w-full ">
+          {user.uid === document.userId && <div className="w-full ">
             <div className="flex gap-2 mt-2 w-full justify-center">
               <input
                 type="email"
@@ -102,7 +102,8 @@ export const TeamsWidget = ({ document }) => {
                 </button>
               </div>
             </div>
-          </div>
+          </div>}
+          
         </div>
       </div>
     </div>
