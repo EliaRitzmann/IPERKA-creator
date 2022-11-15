@@ -10,7 +10,7 @@ export const TeamsWidget = ({ document }) => {
 
   const addMember = async () => {
     var oldContributor = [];
-
+    var bad = false;
     if (document.contributor) {
       oldContributor = document.contributor;
     }
@@ -18,30 +18,33 @@ export const TeamsWidget = ({ document }) => {
 
     for (let index = 0; index < oldContributor.length; index++) {
       if (contributor == oldContributor[index]) {
-        setContributor("");
+       bad = true;
       }
     }
 
-    if (contributor != "") {
+    if (contributor != "" && !bad) {
+      bad = false;
       await oldContributor.push(contributor);
 
       await updateDoc(doc(firestore, "documents", document.id), {
         contributor: oldContributor,
       });
     }
+
+    
   };
 
   var elements = [];
 
   if (document.contributor) {
     for (let index = 0; index < document.contributor.length; index++) {
-      elements.push(<TeamMember email={document.contributor[index]} key={index}></TeamMember>)
+      elements.push(<TeamMember document={document} email={document.contributor[index]} key={index}></TeamMember>)
     }
   }
 
   return (
     <div className="card w-full bg-base-100 shadow-xl row-span-2">
-      <div className="card-body">
+      <div className="card-body ">
         <div className="flex flex-col justify-between h-full ">
           <div>
             <h2 className="card-title mb-5">Team:</h2>
@@ -66,7 +69,7 @@ export const TeamsWidget = ({ document }) => {
               </div>
             </div>
             <div className="divider"></div>
-            <div className="flex flex-col gap-3 max-h-60 overflow-y-auto">
+            <div className="flex flex-col gap-3 max-h-60 w-full overflow">
             {elements}
             </div>
             

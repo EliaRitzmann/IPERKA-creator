@@ -18,7 +18,6 @@ export const TextInput = (props) => {
       setValue("")
     }
   }, [props])
-  
 
   return (
     <div className="form-control w-full -mt-2">
