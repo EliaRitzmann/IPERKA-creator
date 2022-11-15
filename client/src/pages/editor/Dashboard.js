@@ -41,7 +41,7 @@ export const Dashboard = ({document}) => {
         <WelcomeWidget></WelcomeWidget>
         <IPERKA_Widget></IPERKA_Widget>
         <DaysLeftWidget document={document}></DaysLeftWidget>
-        <TeamsWidget></TeamsWidget>
+        <TeamsWidget document={document}></TeamsWidget>
         <SettingsWidget document={document}></SettingsWidget>
         <NotesWidget document={document}></NotesWidget>
       </div>

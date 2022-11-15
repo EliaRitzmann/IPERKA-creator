@@ -17,8 +17,13 @@ export const DaysLeftWidget = ({document}) => {
   useEffect(() => {
     //console.log("data: "+ document.dueDate.toDate())
     if(document.dueDate){
-      var timediffrence = document.dueDate.toDate().getTime() -  new Date().getTime()
-      setValue((timediffrence/1000)+86400-3600)
+      try {
+        var timediffrence = document.dueDate.toDate().getTime() -  new Date().getTime()
+        setValue((timediffrence/1000)+86400-3600)
+      } catch (error) {
+        console.log("invalid Date")
+      }
+      
     }
     
     //console.log("diff: " + Math.floor(value / (3600*24)))

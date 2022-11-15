@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { NewProjectCard } from "../../components/home/NewProjectCard";
 import { NewProjectModal } from "../../components/home/NewProjectModal";
 import { ProjectCard } from "../../components/home/ProjectCard";
+import { UserAuthContextProvider } from "../../context/AuthContext";
 import { useDatabase } from "../../context/DatabaseContext";
 
 export const Projects = () => {
   const [showModal, setShowModal] = useState(false)
 
-  const { documents } = useDatabase();
+  const { documents, contributor } = useDatabase();
   console.log(documents);
 
   const elements = [];
@@ -21,6 +22,20 @@ export const Projects = () => {
         key={i}
       ></ProjectCard>
     );
+  }
+
+  const contributorElement = []
+
+  for (let j = 0; j < contributor.length; j++) {
+    contributorElement.push(
+      <ProjectCard
+        documentName={contributor[j].documentName}
+        documentDescription={contributor[j].documentDescription}
+        documentId={contributor[j].id}
+        key={j}
+      ></ProjectCard>
+    );
+    
   }
 
   return (
@@ -42,7 +57,7 @@ export const Projects = () => {
           Projekte bei denen du mitarbeitest
         </h1>
         <div className="flex gap-4">
-          {elements}
+          {contributorElement}
         </div>
       </div>
       <input type="checkbox" id="NewProjectModal" className="modal-toggle" />

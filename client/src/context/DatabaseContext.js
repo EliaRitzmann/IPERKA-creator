@@ -26,15 +26,29 @@ export const DatabaseContextProvider = ({children}) => {
     const { user } = useAuth()
     console.log(user)
     const [documents, setDocuments] = useState([])
-    
+    const [contributor, setContributor] = useState([])
+
     //category
     const documentsRef = query(collection(firestore, "documents"), where("userId", "==", user.uid))
+
+    const contributorRef = query(collection(firestore, "documents"), where("contributor", "array-contains", user.email))
 
     useEffect(() =>
     onSnapshot(documentsRef, (snapshot) => {
       setDocuments([])
       setDocuments(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       console.log("documents read")
+      console.log(documents)
+    }
+    ),
+    []);
+
+    useEffect(() =>
+    onSnapshot(contributorRef, (snapshot) => {
+      setContributor([])
+      setContributor(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      console.log("contributor read")
+      console.log(contributor)
     }
     ),
     []);
@@ -52,6 +66,7 @@ export const DatabaseContextProvider = ({children}) => {
 
     const value = {
         documents,
+        contributor,
         addDocument
     }
 
