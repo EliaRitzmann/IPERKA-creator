@@ -16,7 +16,7 @@ import { Realisieren } from "./Realisieren";
 export const Editor = () => {
   let { id } = useParams();
   const { documents, contributor } = useDatabase();
-  console.log("rerender")
+
   const document = documents.find((doc) => doc.id == id)
 
   const documentb = contributor.find((doc) => doc.id == id)
@@ -61,6 +61,7 @@ export const Editor = () => {
     return(
       <div>
           <h1>no document found under id: {id}</h1>
+          <h1>Check if you are a contributer to this project</h1>
           <a href="/">back</a>
       </div>
     )

@@ -68,7 +68,7 @@ export const TeamsWidget = ({ document }) => {
                 <span className="flex items-center gap-1">{document.owner} <span className="text-gray-500 text-xs justify-end">(owner)</span></span>
               </div>
             </div>
-            <div className="divider"></div>
+            <div className="divider">Mitglieder</div>
             <div className="flex flex-col gap-3 max-h-60 w-full overflow">
             {elements}
             </div>
