@@ -17,7 +17,7 @@ export const TextInput = (props) => {
     }else{
       setValue("")
     }
-  }, [])
+  }, [props])
   
 
   return (

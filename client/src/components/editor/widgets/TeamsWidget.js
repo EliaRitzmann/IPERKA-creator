@@ -62,7 +62,7 @@ export const TeamsWidget = ({ document }) => {
                   />
                 </svg>
 
-                <span>{document.owner}</span>
+                <span className="flex items-center gap-1">{document.owner} <span className="text-gray-500 text-xs justify-end">(owner)</span></span>
               </div>
             </div>
             <div className="divider"></div>

@@ -38,7 +38,7 @@ export const DatabaseContextProvider = ({children}) => {
       setDocuments([])
       setDocuments(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
       console.log("documents read")
-      console.log(documents)
+      console.log(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     }
     ),
     []);

@@ -22,7 +22,7 @@ export const DateInput = (props) => {
         }else{
           setValue(new Date())
         }
-      }, [])
+      }, [props])
 
   return (
     <div className="form-control w-full -mt-2">

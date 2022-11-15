@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 
 export const DaysLeftWidget = ({document}) => {
   const [value, setValue] = useState()
-  
   useEffect(() => {
 
     const timer = setTimeout(() => {
@@ -23,11 +22,10 @@ export const DaysLeftWidget = ({document}) => {
       } catch (error) {
         console.log("invalid Date")
       }
-      
     }
     
     //console.log("diff: " + Math.floor(value / (3600*24)))
-  }, [])
+  }, [document])
 
   if(value > 0){
     return (

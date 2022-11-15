@@ -9,7 +9,6 @@ import { WelcomeWidget } from "../../components/editor/widgets/WelcomeWidget";
 export const Dashboard = ({document}) => {
   const [showAlert, setShowAlert] = useState(true);
   const [state, setState] = useState(0)
-
   return (
     <div className="m-3 gap-2 flex flex-col">
       <h1 className="text-2xl font-semibold">Dashboard</h1>

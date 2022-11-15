@@ -17,7 +17,7 @@ export const TextAreaInput = (props) => {
     }else{
       setValue("")
     }
-  }, [])
+  }, [props])
 
   return (
     <div className="form-control w-full -mt-2">

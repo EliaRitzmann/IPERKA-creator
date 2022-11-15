@@ -16,7 +16,7 @@ import { Realisieren } from "./Realisieren";
 export const Editor = () => {
   let { id } = useParams();
   const { documents, contributor } = useDatabase();
-
+  console.log("rerender")
   const document = documents.find((doc) => doc.id == id)
 
   const documentb = contributor.find((doc) => doc.id == id)
