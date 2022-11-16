@@ -3,6 +3,7 @@ import { useAuth } from "../../../context/AuthContext";
 //Navigation
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../../other/Logo";
+import { exportPDF } from "../../../pdf/createPDF";
 
 export const Sidebar = (props) => {
   const { user, logOut } = useAuth();
@@ -103,7 +104,7 @@ export const Sidebar = (props) => {
         <div className="divider -my-1 mx-2"></div>
 
         <div className="tooltip tooltip-right z-30" data-tip="Export">
-          <button className="btn btn-square btn-ghost">
+          <button className="btn btn-square btn-ghost" onClick={() => exportPDF(props.document)}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
