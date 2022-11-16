@@ -1,21 +1,9 @@
-import { async } from "@firebase/util";
 import { addDoc, collection, deleteDoc, doc, onSnapshot, query, updateDoc, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { firestore } from "../../../config/firebase";
 
-export const Requirements = ({ document }) => {
-    const [tests, setTests] = useState([])
-
-    const testsRef = query(collection(firestore, "tests"), where("documentId", "==", document.id))
-
-    useEffect(() =>
-    onSnapshot(testsRef, (snapshot) => {
-      setTests([])
-      setTests(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-      console.log("tests read")
-    }
-    ),
-    []);
+export const Requirements = ({ document, tests }) => {
+    
 
     var elements = []
 
