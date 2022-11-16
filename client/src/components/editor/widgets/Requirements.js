@@ -1,26 +1,43 @@
-import { addDoc, collection, deleteDoc, doc, onSnapshot, query, updateDoc, where } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { firestore } from "../../../config/firebase";
 
 export const Requirements = ({ document }) => {
-    const [tests, setTests] = useState([])
-    const testsRef = query(collection(firestore, "tests"), where("documentId", "==", document.id))
+  const [tests, setTests] = useState([]);
+  const testsRef = query(
+    collection(firestore, "tests"),
+    where("documentId", "==", document.id)
+  );
 
-    useEffect(() =>
-    onSnapshot(testsRef, (snapshot) => {
-      setTests([])
-      setTests(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-        
-    }
-    ),
-    []);
+  useEffect(
+    () =>
+      onSnapshot(testsRef, (snapshot) => {
+        setTests([]);
+        setTests(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      }),
+    []
+  );
 
-    const elements = []
+  const elements = [];
 
-    for (let index = 0; index < tests.length; index++) {
-      elements.push(<TableRow test={tests[index]} number={index + 1} key={index + tests[index].text + tests[index].type}></TableRow>)
+  for (let index = 0; index < tests.length; index++) {
+    elements.push(
+      <TableRow
+        test={tests[index]}
+        number={index + 1}
+        key={index + tests[index].text + tests[index].type}
+      ></TableRow>
+    );
   }
-
 
   return (
     <div className="card w-full bg-base-100 shadow-xl col-span-2 xl:row-span-3 xl:col-span-2">
@@ -37,7 +54,7 @@ export const Requirements = ({ document }) => {
               </tr>
             </thead>
             <tbody>
-            {elements}
+              {elements}
               <NewRow document={document} number={elements.length + 1}></NewRow>
             </tbody>
           </table>
@@ -47,26 +64,26 @@ export const Requirements = ({ document }) => {
   );
 };
 
-const TableRow = ({test, number}) => {
-    const [type, setType] = useState(test.type)
-    const [text, setText] = useState(test.text)
+const TableRow = ({ test, number }) => {
+  const [type, setType] = useState(test.type);
+  const [text, setText] = useState(test.text);
 
-    const updateTest = async () => {
-        await updateDoc(doc(firestore, "tests", test.id), {
-            documentId: test.documentId,
-            type: type,
-            text: text
-        })
-    }
+  const updateTest = async () => {
+    await updateDoc(doc(firestore, "tests", test.id), {
+      documentId: test.documentId,
+      type: type,
+      text: text,
+    });
+  };
 
-    const updateDropdown = (text) => {
-        setType(text)
-        updateTest()
-    }
+  const updateDropdown = (text) => {
+    setType(text);
+    updateTest();
+  };
 
-    const deleteTest = async () => {
-        await deleteDoc(doc(firestore, "tests", test.id))
-    }
+  const deleteTest = async () => {
+    await deleteDoc(doc(firestore, "tests", test.id));
+  };
 
   return (
     <tr>
@@ -84,7 +101,9 @@ const TableRow = ({test, number}) => {
               <a onClick={() => updateDropdown("Funktional")}>Funktional</a>
             </li>
             <li>
-              <a onClick={() => updateDropdown("Randbedingung")}>Randbedingung</a>
+              <a onClick={() => updateDropdown("Randbedingung")}>
+                Randbedingung
+              </a>
             </li>
             <li>
               <a onClick={() => updateDropdown("Qualitativ")}>Qualitativ</a>
@@ -96,34 +115,34 @@ const TableRow = ({test, number}) => {
         <input
           type="text"
           value={text}
-          onChange={(e)=> setText(e.target.value)}
+          onChange={(e) => setText(e.target.value)}
           onBlur={updateTest}
-          placeholder="Type here"
+          placeholder="schreiben..."
           className="input w-full max-w-md"
         />
-        
       </th>
       <th>
-      <button className="btn" onClick={deleteTest}>del</button>
+        <button className="btn" onClick={deleteTest}>
+          del
+        </button>
       </th>
     </tr>
   );
 };
 
-const NewRow = ({document, number}) => {
-    const [type, setType] = useState("Funktional")
-    const [text, setText] = useState("")
+const NewRow = ({ document, number }) => {
+  const [type, setType] = useState("Funktional");
+  const [text, setText] = useState("");
 
-    const addTest = async () => {
-        await addDoc(collection(firestore, "tests"), {
-            documentId: document.id,
-            type: type,
-            text: text
-        })
-        setType("Funktional")
-        setText("")
-    }
-
+  const addTest = async () => {
+    await addDoc(collection(firestore, "tests"), {
+      documentId: document.id,
+      type: type,
+      text: text,
+    });
+    setType("Funktional");
+    setText("");
+  };
 
   return (
     <tr>
@@ -153,14 +172,15 @@ const NewRow = ({document, number}) => {
         <input
           type="text"
           value={text}
-          onChange={(e)=> setText(e.target.value)}
-          placeholder="Type here"
+          onChange={(e) => setText(e.target.value)}
+          placeholder="schreiben..."
           className="input w-full max-w-md"
         />
-        
       </th>
       <th>
-      <button className="btn" onClick={addTest}>add</button>
+        <button className="btn" onClick={addTest}>
+          add
+        </button>
       </th>
     </tr>
   );

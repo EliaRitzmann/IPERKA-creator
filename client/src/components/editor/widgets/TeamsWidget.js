@@ -43,7 +43,7 @@ export const TeamsWidget = ({ document }) => {
   }
 
   return (
-    <div className="card w-full bg-base-100 shadow-xl col-span-2">
+    <div className="card w-full bg-base-100 shadow-xl col-span-2 xl:col-span-1 xl:row-span-2">
       <div className="card-body ">
         <div className="flex flex-col justify-between h-full ">
           <div>
