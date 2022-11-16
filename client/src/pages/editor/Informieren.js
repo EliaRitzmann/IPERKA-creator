@@ -1,10 +1,10 @@
 import { addDoc, collection, deleteDoc, doc, onSnapshot, query, updateDoc, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { firestore } from "../../../config/firebase";
 
 import { Aufgabenstellung } from '../../components/editor/informieren/Aufgabenstellung'
 import { Requirements } from '../../components/editor/informieren/Requirements'
 import { TeamsWidget } from '../../components/editor/widgets/TeamsWidget'
+import { firestore } from "../../config/firebase";
 
 export const Informieren = ({document}) => {
   const [tests, setTests] = useState([])
