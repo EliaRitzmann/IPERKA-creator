@@ -11,7 +11,7 @@ export const Informieren = ({document}) => {
     <div className='h-5/6 m-3 gap-2 flex flex-col'>
       <h1 className='text-2xl font-semibold'>Informieren</h1>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 xl:grid-rows-3 md:gap-4 gap-2">
+      <div className="grid grid-cols-2 xl:grid-cols-3 xl:grid-rows-3 md:gap-4 gap-2">
         <Aufgabenstellung document={document}></Aufgabenstellung>
         <Requirements document={document}></Requirements>
         <TeamsWidget document={document}></TeamsWidget>

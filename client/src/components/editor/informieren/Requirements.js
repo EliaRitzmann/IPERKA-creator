@@ -23,7 +23,7 @@ export const Requirements = ({ document }) => {
 
 
   return (
-    <div className="card w-full bg-base-100 shadow-xl xl:row-span-3 xl:col-span-2">
+    <div className="card w-full bg-base-100 shadow-xl col-span-2 xl:row-span-3 xl:col-span-2">
       <div className="card-body">
         <h2 className="card-title">Anforderunganalyse:</h2>
         <div className="overflow-x-auto">

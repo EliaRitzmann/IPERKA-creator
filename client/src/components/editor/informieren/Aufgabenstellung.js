@@ -4,7 +4,7 @@ import { TextInput } from '../../form/TextInput'
 
 export const Aufgabenstellung = ({document}) => {
   return (
-    <div className="card w-full bg-base-100 shadow-xl ">
+    <div className="card w-full bg-base-100 shadow-xl col-span-2">
       <div className="card-body">
         <h2 className="card-title">Aufgabenstellung:</h2>
         <TextAreaInput document={document} name="taskDescription" label1="Aufgabenstellung:" placeholder="Aufgabenstellung"></TextAreaInput>

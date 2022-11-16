@@ -29,7 +29,7 @@ export const DaysLeftWidget = ({document}) => {
 
   if(value > 0){
     return (
-      <div className="card w-full bg-base-100 shadow-xl">
+      <div className="card w-full bg-base-100 shadow-xl col-span-2 xl:col-span-1">
         <div className="card-body">
           <h2 className="card-title">Zeit bis zur Abgabe:</h2>
           <div className="grid grid-flow-col gap-5 text-center auto-cols-max justify-center items-center h-full">
