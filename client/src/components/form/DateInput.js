@@ -16,9 +16,9 @@ export const DateInput = (props) => {
     useEffect(() => {
         //console.log(props.value)
        
-        if(props.value){
+        if(props.document[props.name]){
             //var date = await toDateTime(props.value)
-            setValue(props.value.toDate().toISOString().split('T')[0])
+            setValue(props.document[props.name].toDate().toISOString().split('T')[0])
         }else{
           setValue(new Date())
         }

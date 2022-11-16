@@ -28,7 +28,7 @@ export const DatabaseContextProvider = ({children}) => {
     const [documents, setDocuments] = useState([])
     const [contributor, setContributor] = useState([])
 
-    //category
+    //document
     const documentsRef = query(collection(firestore, "documents"), where("userId", "==", user.uid))
 
     const contributorRef = query(collection(firestore, "documents"), where("contributor", "array-contains", user.email))

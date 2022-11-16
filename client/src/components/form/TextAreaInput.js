@@ -12,8 +12,8 @@ export const TextAreaInput = (props) => {
   };
 
   useEffect(() => {
-    if(props.value){
-      setValue(props.value)
+    if(props.document[props.name]){
+      setValue(props.document[props.name])
     }else{
       setValue("")
     }
@@ -26,7 +26,7 @@ export const TextAreaInput = (props) => {
         <span className="label-text-alt">{props.label2}</span>
       </label>
       <textarea
-        className="textarea textarea-bordered resize-none" 
+        className="textarea textarea-bordered resize-y" 
         value={value}
         onChange={(e) => setValue(e.target.value)}
         onBlur={saveDoc}

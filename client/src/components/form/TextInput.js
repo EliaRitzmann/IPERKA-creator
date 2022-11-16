@@ -12,8 +12,8 @@ export const TextInput = (props) => {
   };
 
   useEffect(() => {
-    if(props.value){
-      setValue(props.value)
+    if(props.document[props.name]){
+      setValue(props.document[props.name])
     }else{
       setValue("")
     }
