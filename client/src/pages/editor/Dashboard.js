@@ -13,7 +13,7 @@ export const Dashboard = ({document}) => {
       <h1 className="text-2xl font-semibold">Dashboard</h1>
       <Alerts></Alerts>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 md:grid-rows-4 gap-4">
+      <div className="grid grid-cols-1 xl:grid-cols-3 xl:grid-rows-4 gap-4">
         <WelcomeWidget></WelcomeWidget>
         <IPERKA_Widget></IPERKA_Widget>
         <DaysLeftWidget document={document}></DaysLeftWidget>

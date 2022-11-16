@@ -2,20 +2,28 @@ import { addDoc, collection, deleteDoc, doc, onSnapshot, query, updateDoc, where
 import React, { useEffect, useState } from "react";
 import { firestore } from "../../../config/firebase";
 
-export const Requirements = ({ document, tests }) => {
-    
+export const Requirements = ({ document }) => {
+    const [tests, setTests] = useState([])
+    const testsRef = query(collection(firestore, "tests"), where("documentId", "==", document.id))
 
-    var elements = []
-
-    for (let index = 0; index < tests.length; index++) {
-        elements.push(<TableRow test={tests[index]} number={index + 1} key={index}></TableRow>)
+    useEffect(() =>
+    onSnapshot(testsRef, (snapshot) => {
+      setTests([])
+      setTests(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
         
     }
+    ),
+    []);
 
+    const elements = []
+
+    for (let index = 0; index < tests.length; index++) {
+      elements.push(<TableRow test={tests[index]} number={index + 1} key={index + tests[index].text + tests[index].type}></TableRow>)
+  }
 
 
   return (
-    <div className="card w-full bg-base-100 shadow-xl row-span-3 col-span-2">
+    <div className="card w-full bg-base-100 shadow-xl xl:row-span-3 xl:col-span-2">
       <div className="card-body">
         <h2 className="card-title">Anforderunganalyse:</h2>
         <div className="overflow-x-auto">

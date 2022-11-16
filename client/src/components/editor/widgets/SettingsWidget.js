@@ -10,7 +10,7 @@ import { LeaveProjectButton } from '../../other/LeaveProjectButton'
 export const SettingsWidget = ({document}) => {
   const {user} = useAuth()
   return (
-    <div className="card w-full bg-base-100 shadow-xl row-span-2">
+    <div className="card w-full bg-base-100 shadow-xl xl:row-span-2">
       <div className="card-body">
         <h2 className="card-title">Projekt:</h2>
         <TextInput document={document} name="documentName" label1="Name:" placeholder="Name"></TextInput>

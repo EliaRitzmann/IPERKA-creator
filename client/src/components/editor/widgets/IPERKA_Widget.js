@@ -2,7 +2,7 @@ import React from "react";
 
 export const IPERKA_Widget = () => {
   return (
-    <div className="card bg-base-100 shadow-xl col-span-2 w-full">
+    <div className="card bg-base-100 shadow-xl xl:col-span-2 w-full">
       <div className="card-body">
       <h2 className="card-title">Fortschritt:</h2>
         <ul className="steps steps-vertical lg:steps-horizontal">
