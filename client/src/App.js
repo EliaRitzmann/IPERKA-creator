@@ -10,6 +10,7 @@ import { Home } from "./pages/Home";
 import { Editor } from "./pages/editor/Editor";
 import { useAuth } from "./context/AuthContext";
 import { DatabaseContextProvider } from "./context/DatabaseContext";
+import { Profile } from "./pages/Profile";
 
 function App() {
   //MAKE BETTER ROUTING (FILTER???)
