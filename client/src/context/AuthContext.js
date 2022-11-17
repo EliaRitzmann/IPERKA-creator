@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 //Firebase connection
-import { auth } from "../config/firebase";
+import { auth, firestore } from "../config/firebase";
 
 //Firebase functions
 import {
@@ -10,7 +10,7 @@ import {
   signInWithRedirect,
   GithubAuthProvider,
 } from "firebase/auth";
-
+import { doc, setDoc } from "firebase/firestore";
 
 //Create Context
 const userAuthContext = createContext();
@@ -27,7 +27,7 @@ export function UserAuthContextProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   function login() {
-    return signInWithRedirect(auth, githubLogin);
+    signInWithRedirect(auth, githubLogin);
   }
 
   function logOut() {
@@ -35,13 +35,20 @@ export function UserAuthContextProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      await setUser(currentUser);
+
+      //update user information to database
+      await setDoc(doc(firestore, "publicUsers", currentUser.uid), {
+        email: currentUser.email,
+        displayName: currentUser.displayName
+      });
       setLoading(false);
     });
     return unsubscribe;
   }, []);
 
+  
   const value = {
     user,
     logOut,
