@@ -1,5 +1,5 @@
 import { doc, updateDoc } from "firebase/firestore";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { firestore } from "../../../config/firebase";
 
 export const NotesWidget = (props) => {
@@ -10,6 +10,12 @@ export const NotesWidget = (props) => {
       notes: value,
     });
   };
+
+  useEffect(() => {
+    setValue(props.document.notes)
+  }, [props])
+  
+
   return (
     <div className="card w-full bg-base-100 shadow-xl">
   <div className="card-body">

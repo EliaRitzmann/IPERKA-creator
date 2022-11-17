@@ -29,6 +29,7 @@ export const TeamsWidget = ({ document }) => {
       await updateDoc(doc(firestore, "documents", document.id), {
         contributor: oldContributor,
       });
+      await setContributor("")
     }
 
     
@@ -41,6 +42,12 @@ export const TeamsWidget = ({ document }) => {
       elements.push(<TeamMember document={document} email={document.contributor[index]} key={index}></TeamMember>)
     }
   }
+
+  const handleKeyPress = (e) =>{
+    if(e.keyCode === 13){
+      addMember()
+    }
+ }
 
   return (
     <div className="card w-full bg-base-100 shadow-xl col-span-2 xl:col-span-1 xl:row-span-2">
@@ -80,6 +87,7 @@ export const TeamsWidget = ({ document }) => {
                 type="email"
                 value={contributor}
                 onChange={(e) => setContributor(e.target.value)}
+                onKeyDown={(e) => handleKeyPress(e)}
                 placeholder="email"
                 className="input input-bordered w-full max-w-xs invalid:border-red-600 focus:valid:border-green-600 "
               />

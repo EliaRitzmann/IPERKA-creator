@@ -13,8 +13,6 @@ import {
 import { firestore } from "../config/firebase";
 
 
-
-
 //Create Context
 const databaseContext = createContext();
 

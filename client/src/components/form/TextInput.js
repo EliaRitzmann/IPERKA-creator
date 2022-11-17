@@ -12,12 +12,19 @@ export const TextInput = (props) => {
   };
 
   useEffect(() => {
-    if(props.document[props.name]){
-      setValue(props.document[props.name])
-    }else{
-      setValue("")
+    if (props.document[props.name]) {
+      setValue(props.document[props.name]);
+    } else {
+      setValue("");
     }
-  }, [props])
+  }, [props]);
+
+  
+  const handleKeyPress = (e) =>{
+    if(e.keyCode === 13){
+      e.target.blur(); 
+    }
+ }
 
   return (
     <div className="form-control w-full -mt-2">
@@ -28,7 +35,8 @@ export const TextInput = (props) => {
       <input
         type="text"
         value={value}
-        onChange={(e => setValue(e.target.value))}
+        onChange={(e) => setValue(e.target.value)}
+        onKeyDown={(e) => handleKeyPress(e)}
         onBlur={saveDoc}
         placeholder={props.placeholder}
         className="input input-bordered w-full "

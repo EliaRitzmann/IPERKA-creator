@@ -3,27 +3,32 @@ import React, { useState, useEffect } from "react";
 import { firestore } from "../../config/firebase";
 
 export const DateInput = (props) => {
-    const [value, setValue] = useState("");
+  const [value, setValue] = useState("");
 
-    const saveDoc = async () => {
-        var timestamp = new Date(value)
-        console.log(timestamp)
-        await updateDoc(doc(firestore, "documents", props.document.id), {
-            [props.name]: timestamp,
-          });
-    };
+  const saveDoc = async () => {
+    var timestamp = new Date(value);
+    console.log(timestamp);
+    await updateDoc(doc(firestore, "documents", props.document.id), {
+      [props.name]: timestamp,
+    });
+  };
 
-    useEffect(() => {
-        //console.log(props.value)
-       
-        if(props.document[props.name]){
-            //var date = await toDateTime(props.value)
-            setValue(props.document[props.name].toDate().toISOString().split('T')[0])
-        }else{
-          setValue(new Date())
-        }
-      }, [props])
+  useEffect(() => {
+    //console.log(props.value)
 
+    if (props.document[props.name]) {
+      //var date = await toDateTime(props.value)
+      setValue(props.document[props.name].toDate().toISOString().split("T")[0]);
+    } else {
+      setValue(new Date());
+    }
+  }, [props]);
+
+
+  useEffect(() => {
+    saveDoc()
+  }, [value])
+  
   return (
     <div className="form-control w-full -mt-2">
       <label className="label">
@@ -33,8 +38,7 @@ export const DateInput = (props) => {
       <input
         type="date"
         value={value}
-        onChange={(e => setValue(e.target.value))}
-        onBlur={saveDoc}
+        onChange={(e) => setValue(e.target.value)}
         //placeholder={props.placeholder}
         className="input input-bordered w-full"
       />
@@ -43,5 +47,5 @@ export const DateInput = (props) => {
         <span className="label-text-alt">{props.label4}</span>
       </label>
     </div>
-  )
-}
+  );
+};

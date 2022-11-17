@@ -85,17 +85,23 @@ const TableRow = ({ test, number }) => {
     await deleteDoc(doc(firestore, "tests", test.id));
   };
 
+  const handleKeyPress = (e) =>{
+    if(e.keyCode === 13){
+      updateTest()
+    }
+ }
+
   return (
     <tr>
       <th>{number}</th>
       <th>
-        <div className="dropdown dropdown-right dropdown-end w-full">
+        <div className="dropdown dropdown-right w-full">
           <label tabIndex={0} className="btn m-1 btn-outline w-full">
             {type}
           </label>
           <ul
             tabIndex={0}
-            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 "
           >
             <li>
               <a onClick={() => updateDropdown("Funktional")}>Funktional</a>
@@ -116,6 +122,7 @@ const TableRow = ({ test, number }) => {
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
+          onKeyDown={(e) => handleKeyPress(e)}
           onBlur={updateTest}
           placeholder="schreiben..."
           className="input w-full max-w-md"
@@ -143,6 +150,12 @@ const NewRow = ({ document, number }) => {
     setType("Funktional");
     setText("");
   };
+  
+  const handleKeyPress = (e) =>{
+    if(e.keyCode === 13){
+      addTest()
+    }
+ }
 
   return (
     <tr>
@@ -173,6 +186,7 @@ const NewRow = ({ document, number }) => {
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
+          onKeyDown={(e) => handleKeyPress(e)}
           placeholder="schreiben..."
           className="input w-full max-w-md"
         />
