@@ -38,11 +38,14 @@ export function UserAuthContextProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       await setUser(currentUser);
 
-      //update user information to database
+      if(user){
+        //update user information to database
       await setDoc(doc(firestore, "publicUsers", currentUser.uid), {
         email: currentUser.email,
         displayName: currentUser.displayName
       });
+      }
+      
       setLoading(false);
     });
     return unsubscribe;
