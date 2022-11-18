@@ -2,6 +2,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import React from "react";
 import { firestore } from "../../config/firebase";
 import { useAuth } from "../../context/AuthContext";
+import { ConfirmModal, triggerConformModal } from "./ConfirmModal";
 
 export const LeaveProjectButton = ({document}) => {
     const {user} = useAuth()
@@ -24,12 +25,15 @@ export const LeaveProjectButton = ({document}) => {
     });
 
   };
-  return (
-    <button
+  return (<div>
+    <ConfirmModal name="leaveProjectModal" title="Projekt verlassen?" text={"Möchten Sie das Projekt " + document.documentName + " wirklich verlassen?"} confirm={leaveProject}></ConfirmModal>
+<button
       className="btn btn-outline btn-error"
-      onClick={() => leaveProject()}
+      onClick={() => triggerConformModal("leaveProjectModal")}
     >
       Projekt verlassen
     </button>
+  </div>
+    
   );
 };

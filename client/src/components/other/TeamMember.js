@@ -12,6 +12,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { firestore } from "../../config/firebase";
 import { useAuth } from "../../context/AuthContext";
+import { ConfirmModal, triggerConformModal } from "./ConfirmModal";
 
 export const TeamMember = ({ email, document }) => {
   const { user } = useAuth();
@@ -109,9 +110,13 @@ export const TeamMember = ({ email, document }) => {
       </div>
       <div className="flex-none hidden md:block">
         {user.uid === document.userId && (
-          <button className="btn btn-sm" onClick={deleteMember}>
+          <div>
+            <ConfirmModal name={"removeMemberModal" + email} title="Mitglied entfernen?" text={"Möchten Sie " + email + " wirklich aus dem Projekt entfernen?"} confirm={deleteMember}></ConfirmModal>
+            <button className="btn btn-sm" onClick={() => triggerConformModal("removeMemberModal" + email)}>
             remove
           </button>
+          </div>
+          
         )}
       </div>
     </div>

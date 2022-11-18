@@ -1,6 +1,8 @@
 import { async } from '@firebase/util'
 import { updateProfile } from 'firebase/auth'
-import React, { useState } from 'react'
+import { doc, getDoc } from 'firebase/firestore'
+import React, { useEffect, useState } from 'react'
+import { firestore } from '../config/firebase'
 import { useAuth } from '../context/AuthContext'
 
 export const Profile = () => {
@@ -21,6 +23,7 @@ export const Profile = () => {
         setUsername(user.displayName)
         setEmail(user.email)
     }
+    
 
   return (
     <div className="modal" id="profile">

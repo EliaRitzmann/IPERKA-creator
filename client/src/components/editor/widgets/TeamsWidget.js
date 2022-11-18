@@ -23,7 +23,7 @@ export const TeamsWidget = ({ document }) => {
       }
     }
 
-    if (contributor != "" && !bad) {
+    if (contributor != "" && !bad && contributor != user.email) {
       bad = false;
       await oldContributor.push(contributor);
 
@@ -40,7 +40,7 @@ export const TeamsWidget = ({ document }) => {
 
   if (document.contributor) {
     for (let index = 0; index < document.contributor.length; index++) {
-      elements.push(<TeamMember document={document} email={document.contributor[index]} key={index}></TeamMember>)
+      elements.push(<TeamMember document={document} email={document.contributor[index]} key={index + document.contributor[index]}></TeamMember>)
     }
   }
 
