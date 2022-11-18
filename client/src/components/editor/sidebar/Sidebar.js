@@ -4,6 +4,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../../other/Logo";
 import { exportPDF } from "../../../pdf/createPDF";
+import { Profile } from "../../../pages/Profile";
 
 export const Sidebar = (props) => {
   const { user, logOut } = useAuth();
@@ -149,13 +150,10 @@ export const Sidebar = (props) => {
               <h1>{user.displayName}</h1>
             </li>
             <li>
-              <a className="justify-between">
+              <a className="justify-between" href="#profile">
                 Profile
                 <span className="badge">New</span>
               </a>
-            </li>
-            <li>
-              <a>Settings</a>
             </li>
             <li>
               <button onClick={signOut}>Logout</button>
@@ -163,6 +161,7 @@ export const Sidebar = (props) => {
           </ul>
         </div>
       </div>
+      <Profile></Profile>
     </div>
   );
 };

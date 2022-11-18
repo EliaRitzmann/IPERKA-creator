@@ -6,7 +6,7 @@ import { UserAuthContextProvider } from "../../context/AuthContext";
 import { useDatabase } from "../../context/DatabaseContext";
 
 export const Projects = () => {
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   const { documents, contributor } = useDatabase();
   console.log(documents);
@@ -24,7 +24,7 @@ export const Projects = () => {
     );
   }
 
-  const contributorElement = []
+  const contributorElement = [];
 
   for (let j = 0; j < contributor.length; j++) {
     contributorElement.push(
@@ -35,11 +35,20 @@ export const Projects = () => {
         key={j}
       ></ProjectCard>
     );
-    
   }
 
   return (
     <div className="p-5">
+      <div className="alert alert-info shadow-lg mb-3">
+  <div>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+    <span>NEU: Du kannst deinen Benutzernamen in den Einstellungen ändern!</span>
+  </div>
+  <div className="flex-none">
+    <a className="btn btn-sm btn-ghost" href="#profile">Einstellungen öffnen</a>
+  </div>
+</div>
+      
       <div>
         <h1 className="mb-2 font-bold text-slate-700">
           Deine Projekte ({documents.length}/3)
@@ -56,9 +65,7 @@ export const Projects = () => {
         <h1 className="mb-2 font-bold text-slate-700">
           Projekte bei denen du mitarbeitest
         </h1>
-        <div className="flex gap-4">
-          {contributorElement}
-        </div>
+        <div className="flex gap-4">{contributorElement}</div>
       </div>
       <input type="checkbox" id="NewProjectModal" className="modal-toggle" />
 

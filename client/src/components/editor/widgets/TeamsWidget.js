@@ -1,5 +1,5 @@
-import { doc, updateDoc } from "firebase/firestore";
-import React, { useState } from "react";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
 import { firestore } from "../../../config/firebase";
 import { useAuth } from "../../../context/AuthContext";
 import { TeamMember } from "../../other/TeamMember";
@@ -7,6 +7,7 @@ import { TeamMember } from "../../other/TeamMember";
 export const TeamsWidget = ({ document }) => {
   const { user } = useAuth();
   const [contributor, setContributor] = useState("");
+  const [owner, setOwner] = useState()
 
   const addMember = async () => {
     var oldContributor = [];
@@ -49,6 +50,16 @@ export const TeamsWidget = ({ document }) => {
     }
  }
 
+ useEffect(() => {
+  getOwner()
+ }, [])
+
+ const getOwner = async() =>{
+    const ownerInfo = await getDoc(doc(firestore, "publicUsers", document.userId))
+    setOwner(ownerInfo.data())
+ }
+ 
+
   return (
     <div className="card w-full bg-base-100 shadow-xl col-span-2 xl:col-span-1 xl:row-span-2">
       <div className="card-body ">
@@ -72,7 +83,7 @@ export const TeamsWidget = ({ document }) => {
                   />
                 </svg>
 
-                <span className="flex items-center gap-1">{document.owner} <span className="text-gray-500 text-xs justify-end">(owner)</span></span>
+                <span className="flex items-center gap-1">{owner?.displayName} <span className="text-gray-500 text-xs justify-end">(owner)</span></span>
               </div>
             </div>
             <div className="divider">Mitglieder</div>

@@ -32,6 +32,12 @@ export const Navbar = () => {
                   </button>
               </li>
               <li>
+              <a className="justify-between" href="#profile">
+                Profile
+                <span className="badge">New</span>
+              </a>
+            </li>
+              <li>
                 <button onClick={logOut}>Logout</button>
               </li>
             </ul>

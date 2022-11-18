@@ -23,10 +23,8 @@ export function useDatabase() {
 
 export const DatabaseContextProvider = ({ children }) => {
   const { user } = useAuth();
-  console.log(user);
   const [documents, setDocuments] = useState([]);
   const [contributor, setContributor] = useState([]);
-  const [publicUsers, setPublicUsers] = useState([]);
 
   //document
   const documentsRef = query(
@@ -63,30 +61,12 @@ export const DatabaseContextProvider = ({ children }) => {
     []
   );
 
-  //publicUsers
-
-  //https://firebase.google.com/docs/firestore/query-data/get-data?hl=de&authuser=0
-  const publicUsersRef = collection(firestore, "publicUsers");
-
-  useEffect(
-    () =>
-      onSnapshot(publicUsersRef, (snapshot) => {
-        setPublicUsers([]);
-        setPublicUsers(
-          snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        );
-        console.log("publicUsers read");
-      }),
-    []
-  );
-
   const addDocument = async (name, description) => {
     console.log(name);
     await addDoc(collection(firestore, "documents"), {
       userId: user.uid,
       documentName: name,
       documentDescription: description,
-      owner: user.displayName,
     });
     console.log("document created");
   };
@@ -94,7 +74,6 @@ export const DatabaseContextProvider = ({ children }) => {
   const value = {
     documents,
     contributor,
-    publicUsers,
     addDocument,
   };
 
