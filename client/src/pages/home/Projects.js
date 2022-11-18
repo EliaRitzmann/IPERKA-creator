@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { NewProjectCard } from "../../components/home/NewProjectCard";
 import { NewProjectModal } from "../../components/home/NewProjectModal";
 import { ProjectCard } from "../../components/home/ProjectCard";
-import { UserAuthContextProvider } from "../../context/AuthContext";
 import { useDatabase } from "../../context/DatabaseContext";
 
 export const Projects = () => {

@@ -13,7 +13,7 @@ export const Home = () => {
     <div className="h-screen bg-gray-200">
       <Navbar></Navbar>
       {user ? <Projects></Projects> : <h1>Please Login</h1>}
-      <Profile></Profile>
+      {user && <Profile></Profile>}
     </div>
   );
 };

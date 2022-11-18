@@ -37,8 +37,9 @@ export function UserAuthContextProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       await setUser(currentUser);
-
-      if(user){
+      
+      //only update PublicUser if there is a user
+      if(currentUser){
         //update user information to database
       await setDoc(doc(firestore, "publicUsers", currentUser.uid), {
         email: currentUser.email,
