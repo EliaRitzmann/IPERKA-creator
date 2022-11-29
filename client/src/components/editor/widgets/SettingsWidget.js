@@ -15,6 +15,7 @@ export const SettingsWidget = ({document}) => {
         <h2 className="card-title">Projekt:</h2>
         <TextInput document={document} name="documentName" label1="Name:" placeholder="Name"></TextInput>
         <TextAreaInput document={document} name="documentDescription" label1="Beschreibung:"  placeholder="Beschreibung"></TextAreaInput>
+        <DateInput document={document} name="startDate" label1="Startdatum:" label2="" placeholder="dd/mm/jjjj"></DateInput>
         <DateInput document={document} name="dueDate" label1="Abgabedatum:" label2="(Immer bis 23:59 Uhr)" placeholder="dd/mm/jjjj"></DateInput>
         {user.uid == document.userId ? <DeleteProjectButton document={document}></DeleteProjectButton> : <LeaveProjectButton document={document}></LeaveProjectButton>}
         
