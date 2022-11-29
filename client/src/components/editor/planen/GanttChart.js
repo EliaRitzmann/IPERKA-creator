@@ -13,10 +13,13 @@ import {
 } from "firebase/firestore";
 import { firestore } from "../../../config/firebase";
 import { NewTaskModal, triggerNewTaskModal } from "./NewTaskModal";
+import { TaskModal, triggerTaskModal } from "./TaskModal";
+import { async } from "@firebase/util";
 
 export const GanttChart = ({document}) => {
     const currentDate = new Date();
     const [tasks, setTasks] = useState([])
+    const [selectedTask, setSelectedTask] = useState()
 
     const tasksRef = query(
       collection(firestore, "tasks"),
@@ -67,19 +70,26 @@ export const GanttChart = ({document}) => {
         project: document.id
       },) 
     }
+
+    const onSelect = async (e) =>{
+        await setSelectedTask(e.id)
+        triggerTaskModal()
+    }
     
 
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <div className="card-body">
       <h2 className="card-title">Tasks:</h2>
-        <Gantt tasks={elements} listCellWidth={""} locale="de"/>
+        <Gantt tasks={elements} listCellWidth={""} locale="de" onSelect={(e) => onSelect(e)}/>
         <div className="flex justify-between">
         <div className="flex items-center gap-2">
         <span className="font-medium ">legende:</span> <span className="badge bg-sky-400 border-sky-400">user 1</span> <span className="badge bg-lime-400 border-lime-400">user 2</span> 
         </div>
         <div className="flex">
         <NewTaskModal document={document}></NewTaskModal>
+        {selectedTask && <TaskModal selectedTask={selectedTask}></TaskModal>}
+        
         <button className="btn" onClick={triggerNewTaskModal}>Hinzufügen</button>
         </div>
         </div>
